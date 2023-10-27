@@ -1,0 +1,59 @@
+class ContaBancaria:
+    def __init__(self, numero, saldo, nome, tipo, status, limite):
+        self.numero = numero
+        self.saldo = saldo
+        self.nome = nome
+        self.tipo = tipo
+        self.status = status
+        self.limite = limite
+        self.deposito = False
+        self.saque = False
+        self.ativando = False
+
+    def depositar(self):
+        if self.status == "Ativada":
+            self.deposito = int(input("Digite o valor que você quer depositar: "))
+            self.saldo = self.deposito + self.saldo
+            print(f"Deposito feito com sucesso! {self.nome}, seu saldo atual é de: {self.saldo}")
+
+    def sacar(self):
+        if self.status == "Ativada":
+            if self.saldo > 0:
+                self.saque = True
+                while self.saque == True:
+                    self.saque = int(input("Digite o valor que você quer sacar: "))
+                    self.saldo = self.saldo - self.saque
+                    if self.saldo >= 0:
+                        print(f"Saque efetuado com sucesso! {self.nome}, seu saldo atual é de: {self.saldo}")
+                    else:
+                        self.saldo = self.saque + self.saldo
+                        print(f"Saldo para saque insuficiente. Você possui {self.saldo} para sacar")
+    def ativar(self):
+        self.ativando = input("Você deseja ativar sua conta? S/N - ")
+        if self.ativando == "S":
+            print("Conta ativada com sucesso")
+            self.status = "Ativada"
+        else:
+            print("A conta permanecerá desativada")
+
+    def verificar(self):
+        if self.status == "Ativada":
+            if self.saldo >= 0:
+                print(f"Olá {self.nome}, seu saldo atual é de {self.saldo}")
+            else:
+                print("Você não tem saldo na conta")
+
+    def desativar(self):
+        if self.status == "Ativada":
+            while self.saldo > 0:
+                print(f"Não é possivel cancelar a conta, pois ela possui um saldo de: {self.saldo}. É necessário que você saque todo o valor")
+                self.saque = int(input("Digite o valor que você quer sacar: "))
+                self.saldo = self.saldo - self.saque
+                if self.saldo < 0:
+                    print("Saldo insuficiente")
+                    self.saldo = self.saque + self.saldo
+            else:
+                print("Conta desativada com sucesso")
+                self.status = "Desativado"
+
+conta1 = ContaBancaria ("123456", 0, "Rodrigo", "Corrente", "Desativada", 20.000)
