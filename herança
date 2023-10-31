@@ -1,0 +1,34 @@
+class Animal():
+ def __init__(self, nome , cor):
+     self.nome=nome
+     self.cor=cor
+
+class Gato(Animal):
+     def __init__(self, nome, cor):
+        super().__init__(nome, cor)
+     def miar(self):
+        print( f"{self.nome} tá miando...")
+
+
+class Cachorro(Animal):
+    def __init__(self, nome, cor):
+        super().__init__(nome, cor)
+
+    def latir(self):
+        print(f"{self.nome} tá latindo...")
+
+
+class Coelho(Animal):
+    def __init__(self, nome, cor):
+        super().__init__(nome, cor)
+
+    def miar(self):
+        print(f"{self.nome} tá chiando...")
+
+
+class Vaca(Animal):
+    def __init__(self, nome, cor):
+        super().__init__(nome, cor)
+
+    def miar(self):
+        print(f"{self.nome} tá mugindo...")
